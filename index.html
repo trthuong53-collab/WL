@@ -53,4 +53,253 @@
 
         /* Video Player Section */
         .player-section {
-            background: rgba(0,
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            background: #000;
+        }
+
+        /* Tùy chỉnh hiển thị phụ đề */
+        video::cue {
+            background: rgba(0, 0, 0, 0.8);
+            color: #feca57;
+            font-size: 1.1rem;
+        }
+
+        .movie-info {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-top: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .movie-title {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: #feca57;
+        }
+
+        .movie-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-primary { background: #ff6b6b; color: white; }
+        .btn-secondary { background: rgba(255, 255, 255, 0.15); color: white; }
+        .btn:hover { transform: translateY(-3px); }
+
+        .favorite-btn.active { background: #e74c3c; }
+
+        .movie-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .movie-list h2 {
+            grid-column: 1 / -1;
+            margin-bottom: 25px;
+            color: #ff6b6b;
+            border-bottom: 2px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .movie-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .movie-card img { width: 100%; height: 330px; object-fit: cover; }
+        .movie-card-content { padding: 15px; }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        #languageSelect {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .search-container { display: flex; justify-content: center; margin-bottom: 40px; }
+        #searchInput { padding: 12px; width: 350px; border-radius: 8px 0 0 8px; border: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 WOLOW</h1>
+            <p class="tagline">Thế giới Girls' Love (GL) độc quyền</p>
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="vi">🇻🇳 Tiếng Việt</option>
+                <option value="en">🇺🇸 English</option>
+            </select>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm phim..." onkeyup="searchMovies()">
+            <button class="btn btn-primary" onclick="searchMovies()">🔍</button>
+        </div>
+
+        <section class="player-section">
+            <div class="video-container">
+                <div style="position:relative; padding-top:56.25%;">
+                    <video id="mainVideo" crossorigin="anonymous" playsinline controls style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                        <source src="https://Wolowstorage.b-cdn.net/Her%20%E0%B8%A3%E0%B8%81%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%98%E0%B8%AD%20-%20GMMTV%202026%20-%20YouTube.mp4" type="video/mp4">
+                        <track label="Tiếng Việt" kind="subtitles" srclang="vi" src="https://Wolowstorage.b-cdn.net/%5BSubtitleTools.com%5D%20Her%20%E0%B8%A3%E0%B8%81%E0%B8%82%E0%B8%AD%E0%B8%83%E0%B9%80%E0%B8%98%E0%B8%AD%20-%20GMMTV%202026.srt" default>
+                        Trình duyệt của bạn không hỗ trợ phát video.
+                    </video>
+                </div>
+            </div>
+
+            <div class="movie-info">
+                <h2 class="movie-title">Denied Love (Tình Yêu Bị Cấm Đoán)</h2>
+                <div class="movie-meta">
+                    <span class="meta-item">⭐ 8.4/10</span>
+                    <span class="meta-item">⏱️ 181 phút</span>
+                    <span class="meta-item">🎭 LGBT, Chính kịch</span>
+                    <span class="meta-item">📅 2025</span>
+                </div>
+                <p class="movie-description">
+                    Bộ phim chính kịch xúc động kể về chuyện tình bí mật giữa hai nữ sinh đại học trong một xã hội còn nhiều định kiến. Một câu chuyện về sự dũng cảm, chấp nhận và hy sinh vì tình yêu chân thật.
+                </p>
+                <div class="controls">
+                    <button class="btn btn-primary" id="playPauseBtn" onclick="togglePlay()">⏸️ Tạm dừng</button>
+                    <button class="btn btn-secondary" onclick="toggleFullscreen()">📺 Toàn màn hình</button>
+                    <button class="btn btn-secondary" onclick="shareMovie()">🔗 Chia sẻ</button>
+                    <button class="btn btn-secondary favorite-btn" onclick="toggleFavorite()">🤍 Thích</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="movie-list">
+            <h2>Phim đề xuất</h2>
+        </section>
+
+        <footer>
+            <p>© 2024 WOLOW. Tất cả các quyền được bảo lưu.</p>
+        </footer>
+    </div>
+
+    <script>
+        const video = document.getElementById('mainVideo');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        // Hàm phát/tạm dừng thật sự
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.innerHTML = '⏸️ Tạm dừng';
+            } else {
+                video.pause();
+                playPauseBtn.innerHTML = '▶️ Phát';
+            }
+        }
+
+        // Toàn màn hình thật sự
+        function toggleFullscreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            }
+        }
+
+        // Theo dõi trạng thái video để cập nhật nút tự động
+        video.addEventListener('play', () => { playPauseBtn.innerHTML = '⏸️ Tạm dừng'; });
+        video.addEventListener('pause', () => { playPauseBtn.innerHTML = '▶️ Phát'; });
+
+        // Logic danh sách phim
+        const recommendedMovies = [
+            { title: "Love Destiny", genre: "Lãng mạn", rating: "8.9/10", year: "2023", image: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=300&h=450&fit=crop" },
+            { title: "Eternal Sunshine", genre: "Tâm lý", rating: "8.5/10", year: "2024", image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300&h=450&fit=crop" },
+            { title: "Midnight Rain", genre: "Kịch tính", rating: "8.7/10", year: "2023", image: "https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300&h=450&fit=crop" },
+            { title: "Starlight Journey", genre: "Phiêu lưu", rating: "8.3/10", year: "2024", image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300&h=450&fit=crop" }
+        ];
+
+        function renderMovieList(movies = recommendedMovies) {
+            const movieList = document.querySelector('.movie-list');
+            movieList.innerHTML = '<h2>Phim đề xuất</h2>';
+            movies.forEach(movie => {
+                movieList.innerHTML += `
+                    <div class="movie-card">
+                        <img src="${movie.image}" alt="${movie.title}">
+                        <div class="movie-card-content">
+                            <h3 class="movie-card-title">${movie.title}</h3>
+                            <p>⭐ ${movie.rating} | 🎭 ${movie.genre}</p>
+                            <p>📅 ${movie.year}</p>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function shareMovie() {
+            if (navigator.share) {
+                navigator.share({ title: 'Denied Love', url: window.location.href });
+            } else {
+                alert('Link đã sẵn sàng để copy: ' + window.location.href);
+            }
+        }
+
+        function toggleFavorite() {
+            const heartBtn = document.querySelector('.favorite-btn');
+            heartBtn.classList.toggle('active');
+            heartBtn.innerHTML = heartBtn.classList.contains('active') ? '❤️ Đã thích' : '🤍 Thích';
+        }
+
+        function searchMovies() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = recommendedMovies.filter(m => m.title.toLowerCase().includes(term));
+            renderMovieList(filtered);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => renderMovieList());
+    </script>
+</body>
+</html>
